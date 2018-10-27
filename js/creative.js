@@ -92,6 +92,97 @@
 })(jQuery); // End of use strict
 
 
+var $form = $('form#contactForm')
+var url = 'https://script.google.com/macros/s/AKfycbzN1glHFsWEauliA3Skb5Ll5vf2vwYYjil2ra8o2vHOW2xnIUfO/exec'
+
+$form.validate({
+  errorClass: "invalid-feedback",
+  highlight: function(element, errorClass) {
+    $(element).removeClass(errorClass)
+  },
+  errorElement: "div",
+  onsubmit: false,
+  rules: {
+    // simple rule, converted to {required:true}
+    Nombre: {
+      required: true,
+      minlength: 3
+    },
+    Tel: {
+      required: true,
+      minlength: 8
+    },
+    Email: {
+      email: true
+    },
+    Asunto: {
+      required: true,
+      minlength: 3,
+      maxlength: 100
+    },
+    Mensaje: {
+      required: true,
+      minlength: 3,
+      maxlength: 5000
+    }
+  },
+  messages: {
+    Nombre: {
+      required: "Por favor ingresa un nombre",
+      minlength: jQuery.validator.format("Por favor ingresa un nombre. Mínimo {0} caracteres")
+    },
+    Tel: {
+      required: "Por favor ingresa un número de teléfono o celular",
+      minlength: jQuery.validator.format("Por favor ingresa un número de teléfono o celular. Mínimo {0} caracteres")
+    },
+    Email: {
+      email: "Por favor ingresa email válido"
+    },
+    Asunto: {
+      required: "Por favor ingresa un asunto",
+      minlength: jQuery.validator.format("Por favor ingresa un asunto. Mínimo {0} caracteres"),
+      maxlength: "Máximo {0} caracteres"
+    },
+    Mensaje: {
+      required: "Por favor ingresa un mensaje",
+      minlength: jQuery.validator.format("Por favor ingresa un mensaje. Mínimo {0} caracteres"),
+      maxlength: "Máximo {0} caracteres"
+    }
+  }
+});
+
+var submitBtn = $('#submitForm')
+var okMessageComponent = $("#okMessage")
+var errorMessageComponent = $("#errorMessage")
+
+submitBtn.on('click', function(e) {
+  e.preventDefault();
+  if($form.valid()){
+    submitBtn.addClass("d-none");
+    $("#loadingForm").addClass("d-block").removeClass('d-none');
+    var jqxhr = $.ajax({
+      url: url,
+      method: "GET",
+      dataType: "json",
+      data: $form.serializeObject()
+    }).done(function(response){
+      console.log('result', response);
+      if(response.result === "success"){
+        $("#loadingForm").addClass("d-none").removeClass('d-block');
+        submitBtn.addClass("d-block");  
+        okMessageComponent.addClass('d-block');
+        // errorMessageComponent.addClass('d-block');
+        $form.addClass('d-none')
+      }
+    }).fail(function(err){
+      console.log('err', err)
+      $("#loadingForm").addClass("d-none").removeClass('d-block');
+      submitBtn.addClass("d-block");
+      errorMessageComponent.addClass('d-block');
+    });
+  }
+})
+
 function initMap(){
     var map;
 

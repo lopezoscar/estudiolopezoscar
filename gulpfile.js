@@ -59,6 +59,18 @@ gulp.task('vendor', function() {
     ])
     .pipe(gulp.dest('./vendor/scrollreveal'))
 
+  // jQuery Serialize Object
+  gulp.src([
+      './node_modules/form-serializer/dist/*.js'
+    ])
+    .pipe(gulp.dest('./vendor/form-serializer'))
+
+  // jQuery Validation
+  gulp.src([
+      './node_modules/jquery-validation/dist/jquery.validate.min.js'
+    ])
+    .pipe(gulp.dest('./vendor/jquery-validation'))
+
 });
 
 // Compile SCSS

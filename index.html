@@ -449,50 +449,73 @@
             <p class="mb-5">Contáctanos y te estaremos llamando a la brevedad.</p>
             <div class="row">
               <div class="col-lg-6 offset-lg-3">
-              <form>
-                <div class="form-group">
-                  <label for="nameInput">Nombre</label>
-                  <input id="nameInput" class="form-control" name="name" type="text" placeholder="Ej: Florencia García" />
-                </div>
-                <div class="form-group">
-                  <label for="phoneInput">Celular</label>
-                  <input id="phoneInput" class="form-control" name="phone" type="text" placeholder="Ej: 15-4444-5555" />
-                </div>
-                <div class="form-group">
-                  <label for="emailInput">E-mail</label>
-                  <input id="emailInput" class="form-control" name="email" type="text" placeholder="Ej: jose@gmail.com" />
-                </div>
-                <div class="form-group">
-                  <label for="subjectInput">Asunto</label>
-                  <input id="subjectInput" class="form-control" name="subject" type="text" placeholder="Ej: Consulta de divorcio" />
-                </div>
-                <div class="form-group">
-                  <label for="messageInput">Mensaje</label>
-                  <textarea id="messageInput" class="form-control" name="message" placeholder="Escribe tu consulta aquí"></textarea>
-                </div>
-                <div class="form-group mt-4">
-                  <button class="btn btn-primary btn-lg btn-block">Enviar</button>
-                </div>
-              </form>
+                <form id="contactForm" class="needs-validation" novalidate>
+                  <div class="form-group">
+                    <label for="nameInput">Nombre <span class="text-danger">(*)</span></label>
+                    <input id="nameInput" class="form-control" name="Nombre" type="text" placeholder="Ej: Florencia García" required />
+                    <!-- <div class="invalid-feedback">
+                      Por favor ingresa un nombre
+                    </div> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="phoneInput">Celular <span class="text-danger">(*)</span></label>
+                    <input id="phoneInput" class="form-control" name="Tel" type="text" placeholder="Ej: 15-4444-5555" required/>
+                   <!--  <div class="invalid-feedback">
+                      Por favor ingresa un número de teléfono o celular
+                    </div> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="emailInput">E-mail</label>
+                    <input id="emailInput" class="form-control" name="Email" type="email" placeholder="Ej: jose@gmail.com" />
+                    <!-- <div class="invalid-feedback">
+                      Por favor ingresa email válido
+                    </div> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="subjectInput">Asunto <span class="text-danger">(*)</span></label>
+                    <input id="subjectInput" class="form-control" name="Asunto" type="text" placeholder="Ej: Consulta de divorcio" required/>
+                   <!--  <div class="invalid-feedback">
+                      Por favor ingresa un asunto
+                    </div> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="messageInput">Mensaje <span class="text-danger">(*)</span></label>
+                    <textarea id="messageInput" class="form-control" name="Mensaje" placeholder="Escribe tu consulta aquí" required></textarea>
+                    <!-- <div class="invalid-feedback">
+                      Por favor ingresa un mensaje
+                    </div> -->
+                  </div>
+                  <div class="form-group mt-4">
+                    <button id="submitForm" class="btn btn-primary btn-lg btn-block submit">Enviar</button>
+                    <div id="loadingForm" class="fas fa-spinner fa-spin fa-3x text-primary d-none"></div>
+                  </div>
+                </form>
+                
+              </div>
+              
             </div>
-            </div>
-            
+            <p id="okMessage" class="d-none bg-light">
+              <i class="fas fa-check-circle text-success"></i>Tu mensaje ha sido enviado correctamente, te estaremos contactando a la brevedad.
+            </p>
+            <p id="errorMessage" class="d-none bg-light">
+              <i class="fas fa-times-circle text-danger"></i>
+              Ups! Ocurrió un error al enviar tu mensaje. Puedes intentarlo nuevamente o puedes escribirnos un mensaje por WhatsApp</p>
           </div>
         </div>
         <div class="row mt-5">
-          <div class="col-lg-3 ml-auto text-center">
+          <div class="col-lg-4 ml-auto text-center">
             <a href="https://api.whatsapp.com/send?phone=5491168782284" class="d-block" target="blank">
               <i class="fab fa-whatsapp fa-3x mb-3 sr-contact-1"></i>
               <p>11-6878-2284</p>
             </a>
           </div>
-          <div class="col-lg-3 ml-auto text-center">
+          <div class="col-lg-4 ml-auto text-center">
             <a class="d-block" href="tel:1120630551">
               <i class="fas fa-phone fa-3x mb-3 sr-contact-1"></i>
               <p>11-2063-0551</p>
             </a>
           </div>
-          <div class="col-lg-3 mr-auto text-center">
+          <div class="col-lg-4 mr-auto text-center">
             <a target="blank" href="https://mail.google.com/mail/?view=cm&fs=1&to=oscarlopez@cpacf.org.ar">
               <i class="fas fa-envelope fa-3x mb-3 sr-contact-2"></i>
               <p>oscarlopez@cpacf.org.ar</p>
@@ -522,9 +545,11 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="vendor/form-serializer/jquery.serialize-object.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/creative.min.js"></script>
+    <script src="js/creative.js"></script>
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXj3CsI6ksbTnb9PV_xSNAuVo8V9yivA4&callback=initMap"></script> -->
 
   </body>
